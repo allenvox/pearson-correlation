@@ -1,0 +1,30 @@
+name: Build
+on: push
+
+jobs:
+  check_codestyle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check codestyle
+        run: git ls-files '*.c' '*.h' '*.cpp' '*.hpp' | xargs clang-format -i --verbose && git diff --exit-code
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Configure
+        run: cmake --preset release
+      - name: Build
+        run: cmake --build --preset release
+
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Configure
+        run: cmake --preset release
+      - name: Build
+        run: cmake --build --preset release
+      - name: Run
+        run: build/release/bin/pearson
