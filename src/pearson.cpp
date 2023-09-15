@@ -91,8 +91,7 @@ int main() {
             << correlation_jugular_area_age << '\n';
 
   // Вычисление корреляции между "Сердцем" и "Возрастом"
-  double correlation_heart_age =
-      calculatePearsonCorrelation(heart, age);
+  double correlation_heart_age = calculatePearsonCorrelation(heart, age);
   std::cout << "Корреляция между \"Сердцем\" и \"Возрастом\": "
             << correlation_heart_age << '\n';
 
